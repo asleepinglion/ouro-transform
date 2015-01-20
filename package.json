@@ -10,6 +10,7 @@
   "repository": "https://github.com/asleepinglion/superjs-transform",
   "dependencies": {
     "bluebird": "^2.8.1",
+    "superjs": "*",
     "underscore": "^1.7.0"
   },
   "license": "MIT"
