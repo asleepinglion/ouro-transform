@@ -52,25 +52,27 @@ module.exports = SuperJS.Class.extend({
     return Promise.all(transforms);
   },
 
-  json: function(context, propertyName) {
+  object: function(context, propertyName) {
 
     return new Promise(function(resolve,reject) {
 
       //attempt to capture the where parameter from the
-      var param = context[propertyName];
+      var property = context[propertyName];
 
-      if (param) {
+      if (property) {
 
-        //attempt to convert where clause to object if its a string
-        if (_.isString(param)) {
+        //attempt to convert parameter clause to object if its a string
+        if( typeof property === 'string' ) {
           try {
-            param = JSON.parse(param);
+            property = JSON.parse(property);
           } catch (e) {
-            //reject(new SuperJS.Error('transform_error', 422, 'The ' + propertyName + ' parameter provided was not valid JSON.'));
+            return reject(new SuperJS.Error('transform_error', 422, 'The ' + propertyName + ' parameter could not be transformed into an object.'));
           }
+        } else if( !typeof property === 'object' ) {
+          return reject(new SuperJS.Error('transform_error', 422, 'The ' + propertyName + ' parameter could not be transformed into an object.'));
         }
 
-        context[propertyName] = param;
+        context[propertyName] = property;
       }
 
       resolve();
