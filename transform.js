@@ -78,6 +78,41 @@ module.exports = SuperJS.Class.extend({
       resolve();
 
     });
+  },
+
+  boolean: function(context, propertyName) {
+
+    return new Promise(function(resolve,reject) {
+
+      //attempt to capture the where parameter from the
+      var property = context[propertyName];
+
+      if( typeof property === 'boolean' ) {
+
+        //do nothing if boolean
+
+      } else if( typeof property === 'string' ) {
+
+        if( property === '1' || property === 'true' ) {
+          context[propertyName] = true;
+        } else {
+          context[propertyName] = false;
+        }
+
+      } else if( typeof property === 'number' ) {
+        if( property === 1 ) {
+          context[propertyName] = true;
+        } else {
+          context[propertyName] = false;
+        }
+
+      } else {
+        context[propertyName] = false;
+      }
+
+      resolve();
+
+    });
   }
 
 });
