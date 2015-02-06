@@ -30,6 +30,7 @@ module.exports = SuperJS.Class.extend({
       var options = transforms[transform];
 
       list.push(function() {
+        console.log(':: executing transform:', JSON.stringify({property: propertyName, transform: transform}));
         return self[transform](context, propertyName, options);
       });
 
@@ -57,22 +58,23 @@ module.exports = SuperJS.Class.extend({
     return new Promise(function(resolve,reject) {
 
       //attempt to capture the where parameter from the
-      var property = context[propertyName];
+      var value = context[propertyName];
 
-      if (property) {
+      if (typeof value !== 'undefined' ) {
 
         //attempt to convert parameter clause to object if its a string
-        if( typeof property === 'string' ) {
+        if( typeof value === 'string' ) {
           try {
-            property = JSON.parse(property);
+            value = JSON.parse(value);
           } catch (e) {
             return reject(new SuperJS.Error('transform_error', 422, 'The ' + propertyName + ' parameter could not be transformed into an object.'));
           }
-        } else if( !typeof property === 'object' ) {
+        } else if( !typeof value === 'object' ) {
           return reject(new SuperJS.Error('transform_error', 422, 'The ' + propertyName + ' parameter could not be transformed into an object.'));
         }
 
-        context[propertyName] = property;
+        //set the new value on the context
+        context[propertyName] = value;
       }
 
       resolve();
@@ -83,6 +85,7 @@ module.exports = SuperJS.Class.extend({
   boolean: function(context, propertyName) {
 
     return new Promise(function(resolve,reject) {
+
 
       //attempt to capture the where parameter from the
       var property = context[propertyName];
