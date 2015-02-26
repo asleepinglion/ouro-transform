@@ -57,7 +57,7 @@ module.exports = SuperJS.Class.extend({
 
     return new Promise(function(resolve,reject) {
 
-      //attempt to capture the where parameter from the
+      //attempt to capture the parameter value
       var value = context[propertyName];
 
       if (typeof value !== 'undefined' ) {
@@ -69,7 +69,7 @@ module.exports = SuperJS.Class.extend({
           } catch (e) {
             return reject(new SuperJS.Error('transform_error', 422, 'The ' + propertyName + ' parameter could not be transformed into an object.'));
           }
-        } else if( !typeof value === 'object' ) {
+        } else if( typeof value !== 'object' ) {
           return reject(new SuperJS.Error('transform_error', 422, 'The ' + propertyName + ' parameter could not be transformed into an object.'));
         }
 
@@ -87,7 +87,7 @@ module.exports = SuperJS.Class.extend({
     return new Promise(function(resolve,reject) {
 
 
-      //attempt to capture the where parameter from the
+      //attempt to capture the parameter's value
       var property = context[propertyName];
 
       if( typeof property === 'boolean' ) {
