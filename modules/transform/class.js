@@ -1,18 +1,15 @@
-/**
- * Transforms can be enabled for model attributes or controller action parameters.
- *
- * @exports Transform
- * @namespace SuperJS.Validator
- * @extends SuperJS.Class
- */
-
 "use strict";
 
+var Base = require('superjs-base');
 var SuperJS = require('superjs');
 var Promise = require('bluebird');
 var _ = require('underscore');
 
-module.exports = SuperJS.Class.extend({
+module.exports = Base.extend(SuperJS.Meta, {
+
+  _metaFile: function() {
+    this._loadMeta(__filename);
+  },
 
   //setup transforms for the given property by creating an array of closures
   //which contain promises to transform
@@ -67,10 +64,10 @@ module.exports = SuperJS.Class.extend({
           try {
             value = JSON.parse(value);
           } catch (e) {
-            return reject(new SuperJS.Error('transform_error', 422, 'The ' + propertyName + ' parameter could not be transformed into an object.'));
+            return reject(new SuperJS.Error('transform_error', 'The ' + propertyName + ' parameter could not be transformed into an object.', {status: 422}));
           }
         } else if( typeof value !== 'object' ) {
-          return reject(new SuperJS.Error('transform_error', 422, 'The ' + propertyName + ' parameter could not be transformed into an object.'));
+          return reject(new SuperJS.Error('transform_error', 'The ' + propertyName + ' parameter could not be transformed into an object.', {status: 422}));
         }
 
         //set the new value on the context
