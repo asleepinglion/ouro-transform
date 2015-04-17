@@ -2,9 +2,9 @@
   "name": "superjs-transform",
   "author": {
     "name": "Aaron Storck",
-    "email": "aaronstorck@gmail.com" 
+    "email": "aaronstorck@gmail.com"
   },
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "SuperJS Transform - Transform or normalize input before validations.",
   "main": "index.js",
   "repository": "https://github.com/asleepinglion/superjs-transform",
