@@ -16,7 +16,7 @@ YSS'      YSSP~YSSY    S*S           YSSP  S*S    SSS  YSSY    YSS'
                        SP                  SP
                        Y                   Y
 
-SuperJS Transform - Normalize input before validations.
+Ouro Transform - Normalize input before validations.
  */
 
 module.exports.Transform = require('./lib/transform/class');

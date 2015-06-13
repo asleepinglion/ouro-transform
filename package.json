@@ -1,16 +1,16 @@
 {
-  "name": "superjs-transform",
+  "name": "ouro-transform",
   "author": {
     "name": "Aaron Storck",
     "email": "aaronstorck@gmail.com"
   },
-  "version": "0.8.1",
-  "description": "SuperJS Transform - Transform or normalize input before validations.",
+  "version": "0.9.0",
+  "description": "Ouro Transform - Transform or normalize input before validations.",
   "main": "index.js",
-  "repository": "https://github.com/asleepinglion/superjs-transform",
+  "repository": "https://github.com/asleepinglion/ouro-transform",
   "dependencies": {
     "bluebird": "*",
-    "superjs": "*",
+    "ouro": "*",
     "underscore": "*"
   },
   "license": "MIT"
